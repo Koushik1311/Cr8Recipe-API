@@ -12,4 +12,6 @@ EXPOSE 5000/tcp
 
 RUN yarn prisma db push
 
+ENV DATABASE_URL=<your_database_url>
+
 CMD ["yarn", "start:prod"]
