@@ -1,0 +1,6 @@
+node_modules
+database-data
+dist
+.git
+.env.local
+.env.example
