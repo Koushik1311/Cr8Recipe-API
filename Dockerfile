@@ -6,6 +6,8 @@ COPY . /usr/src/app
 
 RUN yarn install
 
+RUN yarn prisma db push
+
 RUN yarn build
 
 EXPOSE 5000/tcp
