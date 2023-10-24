@@ -14,3 +14,11 @@ model Recipe {
   title     String
   body      String
 }
+
+model User {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now()) @db.Timestamp
+  updatedAt DateTime @updatedAt @db.Timestamp
+  email     String   @unique
+  password  String
+}
