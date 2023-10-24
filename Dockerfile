@@ -1,13 +1,13 @@
 FROM node:18-alpine
 
-WORKDIR /user/src/app
+WORKDIR /usr/src/app
 
-COPY . .
+COPY . /usr/src/app
 
 RUN yarn install
 
 RUN yarn build
 
-EXPOSE 5000
+EXPOSE 5000/tcp
 
 CMD ["yarn", "start:prod"]
