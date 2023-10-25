@@ -9,7 +9,13 @@ async function bootstrap() {
 
   // Define your CORS options
   const corsOptions: CorsOptions = {
-    origin: ['http://localhost:3000'],
+    origin: (origin, callback) => {
+      if (origin && origin.endsWith('.vercel.app')) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true, // Enable sending credentials like cookies
   };
