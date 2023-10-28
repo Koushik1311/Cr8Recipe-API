@@ -19,9 +19,18 @@ type LoginResponse {
   user: User!
 }
 
+type Ingredient {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String!
+}
+
 type Query {
   users: [User!]!
   user(email: String!): User!
+  ingredients: [Ingredient!]!
+  ingredient(id: Int!): Ingredient!
 }
 
 type Mutation {
@@ -30,6 +39,9 @@ type Mutation {
   removeUser(id: Int!): User!
   login(loginUserInput: LoginUserInput!): LoginResponse!
   signup(loginUserInput: LoginUserInput!): User!
+  createIngredient(createIngredientInput: CreateIngredientInput!): Ingredient!
+  updateIngredient(updateIngredientInput: UpdateIngredientInput!): Ingredient!
+  removeIngredient(id: Int!): Ingredient!
 }
 
 input CreateUserInput {
@@ -46,4 +58,13 @@ input UpdateUserInput {
 input LoginUserInput {
   email: String!
   password: String!
+}
+
+input CreateIngredientInput {
+  name: String!
+}
+
+input UpdateIngredientInput {
+  name: String
+  id: Int!
 }

@@ -39,7 +39,12 @@ export class AuthService {
   }
 
   async signup(loginUserInput: LoginUserInput) {
+    const user = await this.usersService.findOne(loginUserInput.email);
     const password = await bcrypt.hash(loginUserInput.password, 10);
+
+    if (user) {
+      throw new Error('User already exists!');
+    }
     return this.usersService.create({
       ...loginUserInput,
       password,
