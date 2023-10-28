@@ -7,12 +7,29 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Ingredient {
+  id                 String               @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt          DateTime             @default(now()) @db.Timestamp
+  updatedAt          DateTime             @updatedAt @db.Timestamp
+  name               String
+  IngredientOnRecipe IngredientOnRecipe[]
+}
+
 model Recipe {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  createdAt DateTime @default(now()) @db.Timestamp
-  updatedAt DateTime @updatedAt @db.Timestamp
-  title     String
-  body      String
+  id                 String               @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt          DateTime             @default(now()) @db.Timestamp
+  updatedAt          DateTime             @updatedAt @db.Timestamp
+  title              String
+  body               String
+  IngredientOnRecipe IngredientOnRecipe[]
+}
+
+model IngredientOnRecipe {
+  id           String     @id @default(auto()) @map("_id") @db.ObjectId
+  ingredient   Ingredient @relation(fields: [ingredientId], references: [id])
+  recipe       Recipe     @relation(fields: [recipeId], references: [id])
+  ingredientId String     @db.ObjectId
+  recipeId     String     @db.ObjectId
 }
 
 model User {
