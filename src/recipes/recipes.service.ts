@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common';
-import { CreateRecipeDto } from './dto/create-recipe.dto';
-import { UpdateRecipeDto } from './dto/update-recipe.dto';
+import { CreateRecipeInput } from './dto/create-recipe.input';
+import { UpdateRecipeInput } from './dto/update-recipe.input';
 import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class RecipesService {
   constructor(private prisma: PrismaService) {}
 
-  create(createRecipeDto: CreateRecipeDto) {
-    return this.prisma.recipe.create({ data: createRecipeDto });
+  create(createRecipeInput: CreateRecipeInput) {
+    return this.prisma.recipe.create({ data: createRecipeInput });
   }
 
   findAll() {
@@ -19,10 +19,10 @@ export class RecipesService {
     return this.prisma.recipe.findUnique({ where: { id } });
   }
 
-  update(id: string, updateRecipeDto: UpdateRecipeDto) {
-    return this.prisma.recipe.update({
+  update(id: string, updateRecipeInput: UpdateRecipeInput) {
+    return this.prisma.ingredient.update({
       where: { id },
-      data: updateRecipeDto,
+      data: updateRecipeInput,
     });
   }
 

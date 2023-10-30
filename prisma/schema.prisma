@@ -9,17 +9,19 @@ datasource db {
 
 model Ingredient {
   id                 String               @id @default(auto()) @map("_id") @db.ObjectId
-  createdAt          DateTime             @default(now()) @db.Timestamp
-  updatedAt          DateTime             @updatedAt @db.Timestamp
+  createdAt          DateTime             @default(now()) @db.Date
+  updatedAt          DateTime             @updatedAt @db.Date
   name               String
+  slag               String
   IngredientOnRecipe IngredientOnRecipe[]
 }
 
 model Recipe {
   id                 String               @id @default(auto()) @map("_id") @db.ObjectId
-  createdAt          DateTime             @default(now()) @db.Timestamp
-  updatedAt          DateTime             @updatedAt @db.Timestamp
+  createdAt          DateTime             @default(now()) @db.Date
+  updatedAt          DateTime             @updatedAt @db.Date
   title              String
+  slag               String
   body               String
   IngredientOnRecipe IngredientOnRecipe[]
 }
@@ -33,9 +35,11 @@ model IngredientOnRecipe {
 }
 
 model User {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  createdAt DateTime @default(now()) @db.Timestamp
-  updatedAt DateTime @updatedAt @db.Timestamp
-  email     String   @unique
-  password  String
+  id                 String    @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt          DateTime  @default(now()) @db.Date
+  updatedAt          DateTime  @updatedAt @db.Date
+  email              String    @unique
+  password           String
+  refreshToken       String?   @unique
+  refreshTokenExpiry DateTime?
 }

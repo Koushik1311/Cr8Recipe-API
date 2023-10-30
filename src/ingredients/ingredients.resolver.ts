@@ -9,7 +9,9 @@ export class IngredientsResolver {
   constructor(private readonly ingredientsService: IngredientsService) {}
 
   @Mutation(() => Ingredient)
-  createIngredient(@Args('createIngredientInput') createIngredientInput: CreateIngredientInput) {
+  createIngredient(
+    @Args('createIngredientInput') createIngredientInput: CreateIngredientInput,
+  ) {
     return this.ingredientsService.create(createIngredientInput);
   }
 
@@ -19,17 +21,20 @@ export class IngredientsResolver {
   }
 
   @Query(() => Ingredient, { name: 'ingredient' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
+  findOne(@Args('id', { type: () => String }) id: string) {
     return this.ingredientsService.findOne(id);
   }
 
   @Mutation(() => Ingredient)
-  updateIngredient(@Args('updateIngredientInput') updateIngredientInput: UpdateIngredientInput) {
-    return this.ingredientsService.update(updateIngredientInput.id, updateIngredientInput);
+  updateIngredient(
+    @Args('id', { type: () => String }) id: string,
+    @Args('updateIngredientInput') updateIngredientInput: UpdateIngredientInput,
+  ) {
+    return this.ingredientsService.update(id, updateIngredientInput);
   }
 
   @Mutation(() => Ingredient)
-  removeIngredient(@Args('id', { type: () => Int }) id: number) {
+  removeIngredient(@Args('id', { type: () => String }) id: string) {
     return this.ingredientsService.remove(id);
   }
 }

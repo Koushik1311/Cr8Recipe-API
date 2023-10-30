@@ -13,4 +13,7 @@ export class Ingredient {
 
   @Field(() => String)
   name: string;
+
+  @Field(() => String)
+  slag: string;
 }
