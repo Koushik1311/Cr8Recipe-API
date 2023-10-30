@@ -1,10 +1,13 @@
 import { InputType, Int, Field } from '@nestjs/graphql';
 
 @InputType()
-export class CreateIngredientInput {
+export class CreateRecipeInput {
   @Field()
-  name: string;
+  title: string;
 
   @Field()
   slag: string;
+
+  @Field()
+  body: string;
 }

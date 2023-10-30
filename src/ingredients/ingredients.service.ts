@@ -15,15 +15,18 @@ export class IngredientsService {
     return this.prisma.ingredient.findMany();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} ingredient`;
+  findOne(id: string) {
+    return this.prisma.ingredient.findUnique({ where: { id } });
   }
 
-  update(id: number, updateIngredientInput: UpdateIngredientInput) {
-    return `This action updates a #${id} ingredient`;
+  update(id: string, updateIngredientInput: UpdateIngredientInput) {
+    return this.prisma.ingredient.update({
+      where: { id },
+      data: updateIngredientInput,
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} ingredient`;
+  remove(id: string) {
+    return this.prisma.ingredient.delete({ where: { id } });
   }
 }

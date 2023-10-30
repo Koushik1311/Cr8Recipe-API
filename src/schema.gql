@@ -7,6 +7,7 @@ type User {
   createdAt: DateTime!
   updatedAt: DateTime!
   email: String!
+  refreshToken: String!
 }
 
 """
@@ -24,34 +25,65 @@ type Ingredient {
   createdAt: DateTime!
   updatedAt: DateTime!
   name: String!
+  slag: String!
+}
+
+type Recipe {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  title: String!
+  slag: String!
+  body: String!
 }
 
 type Query {
+  recipes: [Recipe!]!
+  recipe(id: String!): Recipe!
   users: [User!]!
   user(email: String!): User!
   ingredients: [Ingredient!]!
-  ingredient(id: Int!): Ingredient!
+  ingredient(id: String!): Ingredient!
 }
 
 type Mutation {
+  createRecipe(createRecipeInput: CreateRecipeInput!): Recipe!
+  updateRecipe(id: String!, updateRecipeInput: UpdateRecipeInput!): Recipe!
+  removeRecipe(id: String!): Recipe!
   createUser(createUserInput: CreateUserInput!): User!
   updateUser(updateUserInput: UpdateUserInput!): User!
   removeUser(id: Int!): User!
   login(loginUserInput: LoginUserInput!): LoginResponse!
   signup(loginUserInput: LoginUserInput!): User!
   createIngredient(createIngredientInput: CreateIngredientInput!): Ingredient!
-  updateIngredient(updateIngredientInput: UpdateIngredientInput!): Ingredient!
-  removeIngredient(id: Int!): Ingredient!
+  updateIngredient(id: String!, updateIngredientInput: UpdateIngredientInput!): Ingredient!
+  removeIngredient(id: String!): Ingredient!
+}
+
+input CreateRecipeInput {
+  title: String!
+  slag: String!
+  body: String!
+}
+
+input UpdateRecipeInput {
+  title: String!
+  slag: String!
+  body: String!
 }
 
 input CreateUserInput {
   email: String!
   password: String!
+  refreshToken: String!
+  refreshTokenExpiry: DateTime!
 }
 
 input UpdateUserInput {
   email: String
   password: String
+  refreshToken: String
+  refreshTokenExpiry: DateTime
   id: Int!
 }
 
@@ -62,9 +94,10 @@ input LoginUserInput {
 
 input CreateIngredientInput {
   name: String!
+  slag: String!
 }
 
 input UpdateIngredientInput {
-  name: String
-  id: Int!
+  name: String!
+  slag: String!
 }
