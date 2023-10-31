@@ -30,21 +30,4 @@ export class UsersService {
   remove(id: number) {
     return `This action removes a #${id} user`;
   }
-
-  async setRefreshToken(
-    id: string,
-    refreshToken: string,
-    expiration: Date,
-  ): Promise<void> {
-    await this.prisma.user.update({
-      where: { id: id },
-      data: { refreshToken, refreshTokenExpiry: expiration },
-    });
-  }
-
-  async getUserByRefreshToken(refreshToken: string) {
-    return this.prisma.user.findUnique({
-      where: { refreshToken },
-    });
-  }
 }

@@ -26,47 +26,6 @@ export class AuthService {
     return null;
   }
 
-  private generateRefreshToken(): string {
-    const refreshToken = bcrypt.hashSync(Math.random().toString(), 10);
-
-    return refreshToken;
-  }
-
-  async refreshTokens(refreshToken: string) {
-    const user = await this.verifyRefreshToken(refreshToken);
-
-    if (user) {
-      const payload = {
-        sub: user.id,
-        email: user.email,
-        createdAt: user.createdAt,
-        updatedAt: user.updatedAt,
-      };
-
-      const accessToken = await this.jwtService.signAsync(payload);
-
-      return {
-        access_token: accessToken,
-        user,
-      };
-    }
-
-    return null;
-  }
-
-  async verifyRefreshToken(refreshToken: string): Promise<User | null> {
-    const user = await this.usersService.getUserByRefreshToken(refreshToken);
-
-    if (
-      user &&
-      user.refreshTokenExpiry &&
-      user.refreshTokenExpiry > new Date()
-    ) {
-      return user;
-    }
-    return null;
-  }
-
   async login(user: User) {
     const payload = {
       sub: user.id,
@@ -76,19 +35,8 @@ export class AuthService {
     };
     const accessToken = await this.jwtService.signAsync(payload);
 
-    const refreshToken = this.generateRefreshToken();
-    const refreshTokenExpiry = new Date();
-    refreshTokenExpiry.setDate(refreshTokenExpiry.getDate() + 30);
-
-    await this.usersService.setRefreshToken(
-      user.id,
-      refreshToken,
-      refreshTokenExpiry,
-    );
-
     return {
       access_token: accessToken,
-      refresh_token: refreshToken,
       user,
     };
   }
@@ -101,15 +49,9 @@ export class AuthService {
       throw new Error('User already exists!');
     }
 
-    const refreshToken = this.generateRefreshToken();
-    const refreshTokenExpiry = new Date();
-    refreshTokenExpiry.setDate(refreshTokenExpiry.getDate() + 30);
-
     return this.usersService.create({
       ...signupUserInput,
       password,
-      refreshToken,
-      refreshTokenExpiry,
     });
   }
 }
