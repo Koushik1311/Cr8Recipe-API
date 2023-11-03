@@ -7,6 +7,8 @@ import { join } from 'path';
 import { AuthModule } from './auth/auth.module';
 import { IngredientsModule } from './ingredients/ingredients.module';
 import { RecipesModule } from './recipes/recipes.module';
+import { JwtAuthGuard } from './auth/guard/jwt-auth.guard';
+import { APP_GUARD } from '@nestjs/core';
 
 @Module({
   imports: [
@@ -19,6 +21,12 @@ import { RecipesModule } from './recipes/recipes.module';
     UsersModule,
     AuthModule,
     IngredientsModule,
+  ],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: JwtAuthGuard,
+    },
   ],
 })
 export class AppModule {}
