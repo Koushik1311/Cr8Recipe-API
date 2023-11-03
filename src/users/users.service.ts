@@ -15,16 +15,19 @@ export class UsersService {
   }
 
   // Find all users TODO: Close this endpoint if not needed(Pending)
-  findAll() {
-    return this.prisma.user.findMany();
-  }
+  // findAll() {
+  //   return this.prisma.user.findMany();
+  // }
 
   findOne(email: string) {
     return this.prisma.user.findUnique({ where: { email } });
   }
 
-  update(id: number, updateUserInput: UpdateUserInput) {
-    return `This action updates a #${id} user`;
+  update(id: string, updateUserInput: UpdateUserInput) {
+    return this.prisma.user.update({
+      where: { id },
+      data: updateUserInput,
+    });
   }
 
   remove(id: number) {

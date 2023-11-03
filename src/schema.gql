@@ -17,7 +17,23 @@ scalar DateTime
 
 type LoginResponse {
   access_token: String!
+  refresh_token: String!
   user: User!
+}
+
+type SignupResponse {
+  refreshToken: String!
+  user: User!
+  message: String!
+}
+
+type LogoutResponse {
+  message: String!
+}
+
+type TokenResponse {
+  message: String!
+  access_token: String!
 }
 
 type Ingredient {
@@ -40,7 +56,6 @@ type Recipe {
 type Query {
   recipes: [Recipe!]!
   recipe(id: String!): Recipe!
-  users: [User!]!
   user(email: String!): User!
   ingredients: [Ingredient!]!
   ingredient(id: String!): Ingredient!
@@ -50,11 +65,11 @@ type Mutation {
   createRecipe(createRecipeInput: CreateRecipeInput!): Recipe!
   updateRecipe(id: String!, updateRecipeInput: UpdateRecipeInput!): Recipe!
   removeRecipe(id: String!): Recipe!
-  createUser(createUserInput: CreateUserInput!): User!
-  updateUser(updateUserInput: UpdateUserInput!): User!
   removeUser(id: Int!): User!
+  signup(signupUserInput: SignupUserInput!): SignupResponse!
   login(loginUserInput: LoginUserInput!): LoginResponse!
-  signup(loginUserInput: LoginUserInput!): User!
+  logout: LogoutResponse!
+  refreshJwtToken: TokenResponse!
   createIngredient(createIngredientInput: CreateIngredientInput!): Ingredient!
   updateIngredient(id: String!, updateIngredientInput: UpdateIngredientInput!): Ingredient!
   removeIngredient(id: String!): Ingredient!
@@ -72,19 +87,9 @@ input UpdateRecipeInput {
   body: String!
 }
 
-input CreateUserInput {
+input SignupUserInput {
   email: String!
   password: String!
-  refreshToken: String!
-  refreshTokenExpiry: DateTime!
-}
-
-input UpdateUserInput {
-  email: String
-  password: String
-  refreshToken: String
-  refreshTokenExpiry: DateTime
-  id: Int!
 }
 
 input LoginUserInput {

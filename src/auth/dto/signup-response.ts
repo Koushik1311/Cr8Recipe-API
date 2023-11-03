@@ -2,13 +2,13 @@ import { Field, ObjectType } from '@nestjs/graphql';
 import { User } from 'src/users/entities/user.entity';
 
 @ObjectType()
-export class LoginResponse {
+export class SignupResponse {
   @Field()
-  access_token: string;
+  refreshToken?: string;
+
+  @Field(() => User)
+  user?: User;
 
   @Field()
-  refresh_token: string;
-
-  @Field()
-  user: User;
+  message: string;
 }
