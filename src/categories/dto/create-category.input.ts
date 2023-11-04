@@ -12,6 +12,6 @@ export class CreateCategoryInput {
   @Field()
   @IsNotEmpty()
   @IsString()
-  @MaxLength(500)
+  @MaxLength(255)
   description: string;
 }

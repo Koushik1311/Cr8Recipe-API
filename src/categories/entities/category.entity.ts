@@ -1,14 +1,15 @@
-import { ObjectType, Field, Int, GraphQLISODateTime } from '@nestjs/graphql';
+import { Field, ObjectType } from '@nestjs/graphql';
+import { Recipe } from 'src/recipes/entities/recipe.entity';
 
 @ObjectType()
 export class Category {
   @Field()
   id: string;
 
-  @Field(() => GraphQLISODateTime)
+  @Field()
   createdAt: Date;
 
-  @Field(() => GraphQLISODateTime)
+  @Field()
   updatedAt: Date;
 
   @Field()
@@ -16,4 +17,7 @@ export class Category {
 
   @Field()
   description: string;
+
+  @Field(() => [Recipe], { nullable: true })
+  recipes: Recipe[] | null;
 }
