@@ -1,8 +1,8 @@
 import { ObjectType, Field, Int, GraphQLISODateTime } from '@nestjs/graphql';
 
 @ObjectType()
-export class Ingredient {
-  @Field(() => String)
+export class Category {
+  @Field()
   id: string;
 
   @Field(() => GraphQLISODateTime)
@@ -11,9 +11,9 @@ export class Ingredient {
   @Field(() => GraphQLISODateTime)
   updatedAt: Date;
 
-  @Field(() => String)
-  name: string;
+  @Field()
+  title: string;
 
-  @Field(() => String)
-  slag: string;
+  @Field()
+  description: string;
 }
