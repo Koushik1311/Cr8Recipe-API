@@ -1,19 +1,21 @@
-import { ObjectType, Field, Int, GraphQLISODateTime } from '@nestjs/graphql';
+import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { Recipeingredient } from 'src/recipeingredients/entities/recipeingredient.entity';
+import { Recipe } from 'src/recipes/entities/recipe.entity';
 
 @ObjectType()
 export class Ingredient {
-  @Field(() => String)
+  @Field()
   id: string;
 
-  @Field(() => GraphQLISODateTime)
+  @Field()
   createdAt: Date;
 
-  @Field(() => GraphQLISODateTime)
+  @Field()
   updatedAt: Date;
 
-  @Field(() => String)
+  @Field()
   name: string;
 
-  @Field(() => String)
-  slag: string;
+  @Field(() => [Recipeingredient], { nullable: true })
+  recipes: Recipeingredient[];
 }

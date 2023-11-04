@@ -12,7 +12,15 @@ export class RecipesService {
   }
 
   findAll() {
-    return this.prisma.recipe.findMany();
+    return this.prisma.recipe.findMany({
+      include: {
+        recipeingredients: {
+          include: {
+            ingredients: true,
+          },
+        },
+      },
+    });
   }
 
   findOne(id: string) {
@@ -20,7 +28,7 @@ export class RecipesService {
   }
 
   update(id: string, updateRecipeInput: UpdateRecipeInput) {
-    return this.prisma.ingredient.update({
+    return this.prisma.recipe.update({
       where: { id },
       data: updateRecipeInput,
     });

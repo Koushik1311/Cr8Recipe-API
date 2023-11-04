@@ -41,50 +41,80 @@ type Ingredient {
   createdAt: DateTime!
   updatedAt: DateTime!
   name: String!
-  slag: String!
+  recipes: [Recipeingredient!]
+}
+
+type Recipeingredient {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  quantity: Float!
+  unit: String!
+  ingredients: Ingredient
 }
 
 type Recipe {
   id: String!
   createdAt: DateTime!
   updatedAt: DateTime!
-  title: String!
+  name: String!
   slag: String!
-  body: String!
+  author: User!
+  description: String
+  cookingTime: Float
+  category: Category!
+  recipeingredients: [Recipeingredient!]
+}
+
+type Category {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  title: String!
+  description: String!
+  recipes: [Recipe!]
+}
+
+type Step {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  order: Float!
+  description: String!
 }
 
 type Query {
+  user(email: String!): User!
+  categories: [Category!]!
+  category(id: String!): Category!
   recipes: [Recipe!]!
   recipe(id: String!): Recipe!
-  user(email: String!): User!
   ingredients: [Ingredient!]!
   ingredient(id: String!): Ingredient!
+  steps: [Step!]!
+  step(id: String!): Step!
+  recipeingredients: [Recipeingredient!]!
 }
 
 type Mutation {
-  createRecipe(createRecipeInput: CreateRecipeInput!): Recipe!
-  updateRecipe(id: String!, updateRecipeInput: UpdateRecipeInput!): Recipe!
-  removeRecipe(id: String!): Recipe!
   removeUser(id: Int!): User!
   signup(signupUserInput: SignupUserInput!): SignupResponse!
   login(loginUserInput: LoginUserInput!): LoginResponse!
   logout: LogoutResponse!
   refreshJwtToken: TokenResponse!
+  createCategory(createCategoryInput: CreateCategoryInput!): Category!
+  updateCategory(updateCategoryInput: UpdateCategoryInput!): Category!
+  removeCategory(id: String!): Category!
+  createRecipe(createRecipeInput: CreateRecipeInput!): Recipe!
+  updateRecipe(updateRecipeInput: UpdateRecipeInput!): Recipe!
+  removeRecipe(id: String!): Recipe!
   createIngredient(createIngredientInput: CreateIngredientInput!): Ingredient!
-  updateIngredient(id: String!, updateIngredientInput: UpdateIngredientInput!): Ingredient!
+  updateIngredient(updateIngredientInput: UpdateIngredientInput!): Ingredient!
   removeIngredient(id: String!): Ingredient!
-}
-
-input CreateRecipeInput {
-  title: String!
-  slag: String!
-  body: String!
-}
-
-input UpdateRecipeInput {
-  title: String!
-  slag: String!
-  body: String!
+  createStep(createStepInput: CreateStepInput!): Step!
+  updateStep(updateStepInput: UpdateStepInput!): Step!
+  removeStep(id: String!): Step!
+  createRecipeingredient(createRecipeingredientInput: CreateRecipeingredientInput!): Recipeingredient!
 }
 
 input SignupUserInput {
@@ -97,12 +127,57 @@ input LoginUserInput {
   password: String!
 }
 
-input CreateIngredientInput {
+input CreateCategoryInput {
+  title: String!
+  description: String!
+}
+
+input UpdateCategoryInput {
+  title: String!
+  description: String!
+}
+
+input CreateRecipeInput {
   name: String!
   slag: String!
+  cookingTime: Float!
+  userId: String!
+  categoryId: String!
+  description: String!
+}
+
+input UpdateRecipeInput {
+  name: String!
+  slag: String!
+  cookingTime: Float!
+  userId: String
+  categoryId: String!
+  description: String!
+}
+
+input CreateIngredientInput {
+  name: String!
 }
 
 input UpdateIngredientInput {
   name: String!
-  slag: String!
+}
+
+input CreateStepInput {
+  order: Float!
+  description: String!
+  recipeId: String!
+}
+
+input UpdateStepInput {
+  order: Float!
+  description: String!
+  recipeId: String
+}
+
+input CreateRecipeingredientInput {
+  quantity: Float!
+  unit: String!
+  recipeId: String!
+  ingredientId: String!
 }

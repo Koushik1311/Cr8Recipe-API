@@ -3,11 +3,13 @@ import { RecipesService } from './recipes.service';
 import { Recipe } from './entities/recipe.entity';
 import { CreateRecipeInput } from './dto/create-recipe.input';
 import { UpdateRecipeInput } from './dto/update-recipe.input';
+import { Public } from 'src/common/public.decorator';
 
 @Resolver(() => Recipe)
 export class RecipesResolver {
   constructor(private readonly recipesService: RecipesService) {}
 
+  @Public()
   @Mutation(() => Recipe)
   createRecipe(
     @Args('createRecipeInput') createRecipeInput: CreateRecipeInput,
@@ -15,6 +17,7 @@ export class RecipesResolver {
     return this.recipesService.create(createRecipeInput);
   }
 
+  @Public()
   @Query(() => [Recipe], { name: 'recipes' })
   findAll() {
     return this.recipesService.findAll();
@@ -27,7 +30,7 @@ export class RecipesResolver {
 
   @Mutation(() => Recipe)
   updateRecipe(
-    @Args('id', { type: () => String }) id: string,
+    id: string,
     @Args('updateRecipeInput') updateRecipeInput: UpdateRecipeInput,
   ) {
     return this.recipesService.update(id, updateRecipeInput);

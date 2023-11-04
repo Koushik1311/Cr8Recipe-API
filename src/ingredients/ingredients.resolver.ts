@@ -3,6 +3,7 @@ import { IngredientsService } from './ingredients.service';
 import { Ingredient } from './entities/ingredient.entity';
 import { CreateIngredientInput } from './dto/create-ingredient.input';
 import { UpdateIngredientInput } from './dto/update-ingredient.input';
+import { Public } from 'src/common/public.decorator';
 
 @Resolver(() => Ingredient)
 export class IngredientsResolver {
@@ -15,6 +16,7 @@ export class IngredientsResolver {
     return this.ingredientsService.create(createIngredientInput);
   }
 
+  @Public()
   @Query(() => [Ingredient], { name: 'ingredients' })
   findAll() {
     return this.ingredientsService.findAll();
@@ -27,7 +29,7 @@ export class IngredientsResolver {
 
   @Mutation(() => Ingredient)
   updateIngredient(
-    @Args('id', { type: () => String }) id: string,
+    id: string,
     @Args('updateIngredientInput') updateIngredientInput: UpdateIngredientInput,
   ) {
     return this.ingredientsService.update(id, updateIngredientInput);

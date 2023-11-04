@@ -27,6 +27,8 @@ export class IngredientsService {
   }
 
   remove(id: string) {
-    return this.prisma.ingredient.delete({ where: { id } });
+    return this.prisma.ingredient.delete({
+      where: { id },
+    });
   }
 }
