@@ -86,6 +86,7 @@ type Step {
 type Query {
   user(email: String!): User!
   categories: [Category!]!
+  categoriesByPartialTitle(partialTitle: String!): [Category!]!
   category(id: String!): Category!
   recipes: [Recipe!]!
   recipe(id: String!): Recipe!

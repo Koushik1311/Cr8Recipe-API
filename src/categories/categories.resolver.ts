@@ -25,6 +25,17 @@ export class CategoriesResolver {
     return this.categoriesService.findAll();
   }
 
+  // Public
+  @Public()
+  @Query(() => [Category], { name: 'categoriesByPartialTitle' })
+  async findByPartialTitle(
+    @Args('partialTitle', { type: () => String }) partialTitle: string,
+  ) {
+    const categories =
+      await this.categoriesService.findByPartialTitle(partialTitle);
+    return categories || []; // If no results found, return an empty array
+  }
+
   // Authenticated
   @Query(() => Category, { name: 'category' })
   findOne(@Args('id', { type: () => String }) id: string) {

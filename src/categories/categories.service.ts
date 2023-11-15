@@ -19,6 +19,19 @@ export class CategoriesService {
     });
   }
 
+  findByPartialTitle(partialTitle: string) {
+    const foundCategories = this.prisma.category.findMany({
+      where: {
+        title: {
+          contains: partialTitle.toLowerCase(),
+          mode: 'insensitive',
+        },
+      },
+    });
+
+    return foundCategories || [];
+  }
+
   findOne(id: string) {
     return this.prisma.category.findUnique({ where: { id } });
   }
