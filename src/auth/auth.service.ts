@@ -132,7 +132,6 @@ export class AuthService {
     }
 
     const refreshToken = user.refreshToken;
-    console.log(refreshToken);
 
     const valid = await bcrypt.compare(refreshToken, get_user?.refreshToken);
 
