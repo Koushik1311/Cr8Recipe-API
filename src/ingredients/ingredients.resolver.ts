@@ -9,6 +9,7 @@ import { Public } from 'src/common/public.decorator';
 export class IngredientsResolver {
   constructor(private readonly ingredientsService: IngredientsService) {}
 
+  @Public()
   @Mutation(() => Ingredient)
   createIngredient(
     @Args('createIngredientInput') createIngredientInput: CreateIngredientInput,
@@ -20,6 +21,18 @@ export class IngredientsResolver {
   @Query(() => [Ingredient], { name: 'ingredients' })
   findAll() {
     return this.ingredientsService.findAll();
+  }
+
+  // Public
+  @Public()
+  @Query(() => [Ingredient], { name: 'ingredientsByPartialName' })
+  async findByPartialName(
+    @Args('partialName', { type: () => String }) partialName: string,
+  ) {
+    const ingredients =
+      await this.ingredientsService.findByPartialName(partialName);
+
+    return ingredients || [];
   }
 
   @Query(() => Ingredient, { name: 'ingredient' })

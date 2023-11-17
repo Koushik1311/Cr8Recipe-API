@@ -15,6 +15,19 @@ export class IngredientsService {
     return this.prisma.ingredient.findMany();
   }
 
+  findByPartialName(partialName: string) {
+    const foundIngredients = this.prisma.ingredient.findMany({
+      where: {
+        name: {
+          contains: partialName.toLowerCase(),
+          mode: 'insensitive',
+        },
+      },
+    });
+
+    return foundIngredients || [];
+  }
+
   findOne(id: string) {
     return this.prisma.ingredient.findUnique({ where: { id } });
   }
