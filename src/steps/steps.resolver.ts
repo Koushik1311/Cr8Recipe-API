@@ -3,11 +3,13 @@ import { StepsService } from './steps.service';
 import { Step } from './entities/step.entity';
 import { CreateStepInput } from './dto/create-step.input';
 import { UpdateStepInput } from './dto/update-step.input';
+import { Public } from 'src/common/public.decorator';
 
 @Resolver(() => Step)
 export class StepsResolver {
   constructor(private readonly stepsService: StepsService) {}
 
+  @Public()
   @Mutation(() => Step)
   createStep(@Args('createStepInput') createStepInput: CreateStepInput) {
     return this.stepsService.create(createStepInput);
