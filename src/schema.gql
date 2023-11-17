@@ -91,6 +91,7 @@ type Query {
   recipes: [Recipe!]!
   recipe(id: String!): Recipe!
   ingredients: [Ingredient!]!
+  ingredientsByPartialName(partialName: String!): [Ingredient!]!
   ingredient(id: String!): Ingredient!
   steps: [Step!]!
   step(id: String!): Step!
