@@ -44,16 +44,7 @@
    yarn install
    ```
 
-3. **Set up .env**
-
-   - copy .env.example to .env
-   - Set values accordingly
-
-4. **Set up MongoDB**
-
-   - [MongoDB Atlas](https://www.mongodb.com/)
-
-5. **Create a branch:**
+3. **Create a branch:**
 
    - Create a new branch for your contribution:
 
@@ -62,6 +53,15 @@
    # or
    git checkout -b fix/bug-name
    ```
+
+4. **Set up .env**
+
+   - copy .env.example to .env
+   - Set values accordingly
+
+5. **Set up MongoDB**
+
+   - [MongoDB Atlas](https://www.mongodb.com/)
 
 6. **Make changes:**
 
