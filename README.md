@@ -53,4 +53,4 @@ Before working on new features or fixes, check the [issue tracker](https://githu
 
 Thank you for contributing to Cr8Recipe! 🌮🍲
 
-[**Front-end**](https://github.com/Koushik1311/Cr8Recipe.git)
+[**Front-end: https://github.com/Koushik1311/Cr8Recipe.git**](https://github.com/Koushik1311/Cr8Recipe.git)
