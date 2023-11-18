@@ -1,73 +1,54 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Cr8Recipe
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Cr8Recipe is a modern recipe-sharing application that combines innovative technology with a user-friendly interface, empowering users to create, share, and explore culinary delights. Whether you're a seasoned chef or a kitchen enthusiast, Cr8Recipe is your go-to platform for discovering and sharing delicious recipes.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Technologies User
 
-## Description
+- Node.js 20.9.0 lts
+- Nest.js
+- GraphQL
+- Prisma ORM
+- MongoDB
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Contributing
 
-## Installation
+We welcome and appreciate contributions from the community to make Cr8Recipe even better! If you're interested in contributing, please follow the guidelines below:
 
-```bash
-$ yarn install
-```
+### How to Contribute
 
-## Running the app
+1. Fork the repository to your GitHub account.
+2. Clone the forked repository to your local machine.
 
-```bash
-# development
-$ yarn run start
+   ```bash
+   git clone https://github.com/Koushik1311/Cr8Recipe-API.git
+   ```
 
-# watch mode
-$ yarn run start:dev
+3. Create a new branch for your changes.
 
-# production mode
-$ yarn run start:prod
-```
+   ```bash
+      git checkout -b feture/your-feture-name
+   ```
 
-## Test
+4. Make your changes and commit them with clear, descriptive messages.
 
-```bash
-# unit tests
-$ yarn run test
+   ```bash
+   git commit -m "Add your concise commit message here"
+   ```
 
-# e2e tests
-$ yarn run test:e2e
+5. Push your changes to your GitHub repository.
 
-# test coverage
-$ yarn run test:cov
-```
+   ```bash
+   git push origin feature/your-feature-name
+   ```
 
-## Support
+6. Open a pull request on the original repository.
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## Code Style
 
-## Stay in touch
+Please follow the established code style and guidelines in the project. If you're unsure, refer to the [CONTRIBUTION.md](CONTRIBUTION.md) file for detailed information.
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+## Issues
 
-## License
+Before working on new features or fixes, check the [issue tracker](https://github.com/Koushik1311/Cr8Recipe-API/issues) for any existing issues or discussions. If you don't find one related to your contribution, feel free to create a new issue and discuss it with the community.
 
-Nest is [MIT licensed](LICENSE).
+Thank you for contributing to Cr8Recipe! 🌮🍲
