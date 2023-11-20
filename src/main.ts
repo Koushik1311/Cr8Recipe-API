@@ -16,7 +16,7 @@ async function bootstrap() {
 
   if (isProduction) {
     allowedOrigins = [
-      process.env.CORS_ALLOW_ORIGIN_PROD || 'https://share-a-recipe.vercel.app',
+      process.env.CORS_ALLOW_ORIGIN_PROD || 'https://cr8recipe.vercel.app/',
     ];
   } else {
     allowedOrigins = [
