@@ -34,4 +34,8 @@ export class CreateRecipeInput {
   @IsString()
   @MaxLength(500)
   description: string;
+
+  @Field()
+  @IsNotEmpty()
+  imageUrl: string;
 }

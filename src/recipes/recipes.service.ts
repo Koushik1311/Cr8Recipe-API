@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateRecipeInput } from './dto/create-recipe.input';
 import { UpdateRecipeInput } from './dto/update-recipe.input';
 import { PrismaService } from 'src/prisma/prisma.service';
@@ -8,7 +8,9 @@ export class RecipesService {
   constructor(private prisma: PrismaService) {}
 
   create(createRecipeInput: CreateRecipeInput) {
-    return this.prisma.recipe.create({ data: createRecipeInput });
+    return this.prisma.recipe.create({
+      data: createRecipeInput,
+    });
   }
 
   findAll() {

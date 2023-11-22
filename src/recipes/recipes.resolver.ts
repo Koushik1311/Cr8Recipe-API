@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Args, Mutation, Resolver, Query } from '@nestjs/graphql';
 import { RecipesService } from './recipes.service';
 import { Recipe } from './entities/recipe.entity';
 import { CreateRecipeInput } from './dto/create-recipe.input';

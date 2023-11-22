@@ -2,7 +2,6 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { CorsOptions } from '@nestjs/common/interfaces/external/cors-options.interface';
 import { ValidationPipe } from '@nestjs/common';
-import { JwtAuthGuard } from './auth/guard/jwt-auth.guard';
 
 async function bootstrap() {
   const port = process.env.PORT || 3301;

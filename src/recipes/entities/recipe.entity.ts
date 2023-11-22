@@ -30,6 +30,9 @@ export class Recipe {
   @Field({ nullable: true })
   cookingTime: number | null;
 
+  @Field()
+  imageUrl: string;
+
   @Field(() => Category)
   category: Category;
 
