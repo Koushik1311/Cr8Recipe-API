@@ -38,6 +38,7 @@ model Recipe {
   author            User               @relation(fields: [userId], references: [id])
   description       String?
   cookingTime       Float?
+  imageUrl          String?
   category          Category           @relation(fields: [categoryId], references: [id])
   userId            String             @db.ObjectId
   steps             Step[]
