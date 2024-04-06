@@ -18,32 +18,40 @@ model User {
   recipes      Recipe[]
 }
 
-// Category model
-model Category {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  createdAt   DateTime @default(now()) @db.Date
-  updatedAt   DateTime @updatedAt @db.Date
-  title       String   @unique
-  description String
-  recipes     Recipe[]
+// CuisineType model
+model CuisineType {
+  id                String              @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt         DateTime            @default(now()) @db.Date
+  updatedAt         DateTime            @updatedAt @db.Date
+  name              String              @unique
+  CuisineTypeRecipe CuisineTypeRecipe[]
 }
 
-// Recipe model
-model Recipe {
-  id                String             @id @default(auto()) @map("_id") @db.ObjectId
-  createdAt         DateTime           @default(now()) @db.Date
-  updatedAt         DateTime           @updatedAt @db.Date
-  name              String
-  slag              String
-  author            User               @relation(fields: [userId], references: [id])
-  description       String?
-  cookingTime       Float?
-  imageUrl          String?
-  category          Category           @relation(fields: [categoryId], references: [id])
-  userId            String             @db.ObjectId
-  steps             Step[]
-  categoryId        String             @db.ObjectId
-  recipeingredients RecipeIngredient[]
+// DietaryRestriction model
+model DietaryRestriction {
+  id                       String                     @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt                DateTime                   @default(now()) @db.Date
+  updatedAt                DateTime                   @updatedAt @db.Date
+  name                     String                     @unique
+  DietaryRestrictionRecipe DietaryRestrictionRecipe[]
+}
+
+// MealType model 
+model MealType {
+  id             String           @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt      DateTime         @default(now()) @db.Date
+  updatedAt      DateTime         @updatedAt @db.Date
+  name           String           @unique
+  MealTypeRecipe MealTypeRecipe[]
+}
+
+// SeasonalOccasion model
+model SeasonalOccasion {
+  id                     String                   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt              DateTime                 @default(now()) @db.Date
+  updatedAt              DateTime                 @updatedAt @db.Date
+  name                   String                   @unique
+  SeasonalOccasionRecipe SeasonalOccasionRecipe[]
 }
 
 // Ingredient model
@@ -55,6 +63,37 @@ model Ingredient {
   recipeingredients RecipeIngredient[]
 }
 
+// Instruction model
+model Instruction {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @updatedAt @db.Date
+  content   String
+  recipe    Recipe   @relation(fields: [recipeId], references: [id])
+  recipeId  String   @unique @db.ObjectId
+}
+
+// Recipe model
+model Recipe {
+  id                       String                     @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt                DateTime                   @default(now()) @db.Date
+  updatedAt                DateTime                   @updatedAt @db.Date
+  name                     String
+  slag                     String                     @unique
+  author                   User                       @relation(fields: [userId], references: [id])
+  description              String?
+  cookingTime              Float?
+  imageUrl                 String?
+  userId                   String                     @db.ObjectId
+  instruction              Instruction?
+  recipeingredients        RecipeIngredient[]
+  CuisineTypeRecipe        CuisineTypeRecipe[]
+  DietaryRestrictionRecipe DietaryRestrictionRecipe[]
+  MealTypeRecipe           MealTypeRecipe[]
+  SeasonalOccasionRecipe   SeasonalOccasionRecipe[]
+}
+
+// Many-to-Many model for Recipe & Ingredient
 model RecipeIngredient {
   id           String     @id @default(auto()) @map("_id") @db.ObjectId
   createdAt    DateTime   @default(now()) @db.Date
@@ -67,15 +106,52 @@ model RecipeIngredient {
   ingredientId String     @db.ObjectId
 }
 
-// Strp model
-model Step {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  createdAt   DateTime @default(now()) @db.Date
-  updatedAt   DateTime @updatedAt @db.Date
-  order       Int
-  description String
-  recipe      Recipe   @relation(fields: [recipeId], references: [id])
-  recipeId    String   @db.ObjectId
+// Many-to-Many model for CuisineType & Recipe
+model CuisineTypeRecipe {
+  id            String      @id @default(auto()) @map("_id") @db.ObjectId
+  cuisineTypeId String      @db.ObjectId
+  cuisineType   CuisineType @relation(fields: [cuisineTypeId], references: [id])
+
+  recipeId String @db.ObjectId
+  recipe   Recipe @relation(fields: [recipeId], references: [id])
+
+  @@unique([cuisineTypeId, recipeId])
+}
+
+// Many-to-Many model for DietaryRestriction & Recipe
+model DietaryRestrictionRecipe {
+  id                   String             @id @default(auto()) @map("_id") @db.ObjectId
+  dietaryRestrictionId String             @db.ObjectId
+  dietaryRestriction   DietaryRestriction @relation(fields: [dietaryRestrictionId], references: [id])
+
+  recipeId String @db.ObjectId
+  recipe   Recipe @relation(fields: [recipeId], references: [id])
+
+  @@unique([dietaryRestrictionId, recipeId])
+}
+
+// Many-to-Many model for MealType & Recipe
+model MealTypeRecipe {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  mealTypeId String   @db.ObjectId
+  mealType   MealType @relation(fields: [mealTypeId], references: [id])
+
+  recipeId String @db.ObjectId
+  recipe   Recipe @relation(fields: [recipeId], references: [id])
+
+  @@unique([mealTypeId, recipeId])
+}
+
+// Many-to-Many model for SeasonalOccasion & Recipe
+model SeasonalOccasionRecipe {
+  id                 String           @id @default(auto()) @map("_id") @db.ObjectId
+  seasonalOccasionId String           @db.ObjectId
+  seasonalOccasion   SeasonalOccasion @relation(fields: [seasonalOccasionId], references: [id])
+
+  recipeId String @db.ObjectId
+  recipe   Recipe @relation(fields: [recipeId], references: [id])
+
+  @@unique([seasonalOccasionId, recipeId])
 }
 
 // TODO: Nutrition & Calories model
