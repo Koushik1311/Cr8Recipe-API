@@ -67,7 +67,13 @@ type Recipe {
 }
 
 type CuisineType {
-  """Example field (placeholder)"""
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String!
+}
+
+type DietaryRestriction {
   id: String!
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -84,6 +90,8 @@ type Query {
   recipeingredients: [Recipeingredient!]!
   cuisineTypes: [CuisineType!]!
   cuisineType(id: String!): CuisineType!
+  dietaryRestrictions: [DietaryRestriction!]!
+  dietaryRestriction(id: String!): DietaryRestriction!
 }
 
 type Mutation {
@@ -102,6 +110,9 @@ type Mutation {
   createCuisineType(createCuisineTypeInput: CreateCuisineTypeInput!): CuisineType!
   updateCuisineType(updateCuisineTypeInput: UpdateCuisineTypeInput!): CuisineType!
   removeCuisineType(id: String!): CuisineType!
+  createDietaryRestriction(createDietaryRestrictionInput: CreateDietaryRestrictionInput!): DietaryRestriction!
+  updateDietaryRestriction(updateDietaryRestrictionInput: UpdateDietaryRestrictionInput!): DietaryRestriction!
+  removeDietaryRestriction(id: String!): DietaryRestriction!
 }
 
 input SignupUserInput {
@@ -154,5 +165,13 @@ input CreateCuisineTypeInput {
 }
 
 input UpdateCuisineTypeInput {
+  name: String!
+}
+
+input CreateDietaryRestrictionInput {
+  name: String!
+}
+
+input UpdateDietaryRestrictionInput {
   name: String!
 }
