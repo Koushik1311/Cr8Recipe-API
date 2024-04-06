@@ -1,6 +1,4 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { Category } from 'src/categories/entities/category.entity';
-import { Ingredient } from 'src/ingredients/entities/ingredient.entity';
 import { Recipeingredient } from 'src/recipeingredients/entities/recipeingredient.entity';
 import { User } from 'src/users/entities/user.entity';
 
@@ -32,9 +30,6 @@ export class Recipe {
 
   @Field()
   imageUrl: string;
-
-  @Field(() => Category)
-  category: Category;
 
   @Field(() => [Recipeingredient], { nullable: true })
   recipeingredients: Recipeingredient[];

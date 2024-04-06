@@ -7,11 +7,10 @@ import { join } from 'path';
 import { AuthModule } from './auth/auth.module';
 import { JwtAuthGuard } from './auth/guard/jwt-auth.guard';
 import { APP_GUARD } from '@nestjs/core';
-import { CategoriesModule } from './categories/categories.module';
 import { RecipesModule } from './recipes/recipes.module';
 import { IngredientsModule } from './ingredients/ingredients.module';
-import { StepsModule } from './steps/steps.module';
 import { RecipeingredientsModule } from './recipeingredients/recipeingredients.module';
+import { CuisineTypesModule } from './cuisine-types/cuisine-types.module';
 
 @Module({
   imports: [
@@ -22,11 +21,10 @@ import { RecipeingredientsModule } from './recipeingredients/recipeingredients.m
     }),
     UsersModule,
     AuthModule,
-    CategoriesModule,
     RecipesModule,
     IngredientsModule,
-    StepsModule,
     RecipeingredientsModule,
+    CuisineTypesModule,
   ],
   providers: [
     {

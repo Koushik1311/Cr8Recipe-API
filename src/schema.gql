@@ -63,40 +63,27 @@ type Recipe {
   description: String
   cookingTime: Float
   imageUrl: String!
-  category: Category!
   recipeingredients: [Recipeingredient!]
 }
 
-type Category {
+type CuisineType {
+  """Example field (placeholder)"""
   id: String!
   createdAt: DateTime!
   updatedAt: DateTime!
-  title: String!
-  description: String!
-  recipes: [Recipe!]
-}
-
-type Step {
-  id: String!
-  createdAt: DateTime!
-  updatedAt: DateTime!
-  order: Float!
-  description: String!
+  name: String!
 }
 
 type Query {
   user(email: String!): User!
-  categories: [Category!]!
-  categoriesByPartialTitle(partialTitle: String!): [Category!]!
-  category(id: String!): Category!
   recipes: [Recipe!]!
   recipe(id: String!): Recipe!
   ingredients: [Ingredient!]!
   ingredientsByPartialName(partialName: String!): [Ingredient!]!
   ingredient(id: String!): Ingredient!
-  steps: [Step!]!
-  step(id: String!): Step!
   recipeingredients: [Recipeingredient!]!
+  cuisineTypes: [CuisineType!]!
+  cuisineType(id: String!): CuisineType!
 }
 
 type Mutation {
@@ -105,19 +92,16 @@ type Mutation {
   login(loginUserInput: LoginUserInput!): LoginResponse!
   logout: LogoutResponse!
   refreshJwtToken: TokenResponse!
-  createCategory(createCategoryInput: CreateCategoryInput!): Category!
-  updateCategory(updateCategoryInput: UpdateCategoryInput!): Category!
-  removeCategory(id: String!): Category!
   createRecipe(createRecipeInput: CreateRecipeInput!): Recipe!
   updateRecipe(updateRecipeInput: UpdateRecipeInput!): Recipe!
   removeRecipe(id: String!): Recipe!
   createIngredient(createIngredientInput: CreateIngredientInput!): Ingredient!
   updateIngredient(updateIngredientInput: UpdateIngredientInput!): Ingredient!
   removeIngredient(id: String!): Ingredient!
-  createStep(createStepInput: CreateStepInput!): Step!
-  updateStep(updateStepInput: UpdateStepInput!): Step!
-  removeStep(id: String!): Step!
   createRecipeingredient(createRecipeingredientInput: CreateRecipeingredientInput!): Recipeingredient!
+  createCuisineType(createCuisineTypeInput: CreateCuisineTypeInput!): CuisineType!
+  updateCuisineType(updateCuisineTypeInput: UpdateCuisineTypeInput!): CuisineType!
+  removeCuisineType(id: String!): CuisineType!
 }
 
 input SignupUserInput {
@@ -128,16 +112,6 @@ input SignupUserInput {
 input LoginUserInput {
   email: String!
   password: String!
-}
-
-input CreateCategoryInput {
-  title: String!
-  description: String!
-}
-
-input UpdateCategoryInput {
-  title: String!
-  description: String!
 }
 
 input CreateRecipeInput {
@@ -168,21 +142,17 @@ input UpdateIngredientInput {
   name: String!
 }
 
-input CreateStepInput {
-  order: Float!
-  description: String!
-  recipeId: String!
-}
-
-input UpdateStepInput {
-  order: Float!
-  description: String!
-  recipeId: String
-}
-
 input CreateRecipeingredientInput {
   quantity: Float!
   unit: String!
   recipeId: String!
   ingredientId: String!
+}
+
+input CreateCuisineTypeInput {
+  name: String!
+}
+
+input UpdateCuisineTypeInput {
+  name: String!
 }
