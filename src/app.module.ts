@@ -11,6 +11,7 @@ import { RecipesModule } from './recipes/recipes.module';
 import { IngredientsModule } from './ingredients/ingredients.module';
 import { RecipeingredientsModule } from './recipeingredients/recipeingredients.module';
 import { CuisineTypesModule } from './cuisine-types/cuisine-types.module';
+import { DietaryRestrictionsModule } from './dietary-restrictions/dietary-restrictions.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { CuisineTypesModule } from './cuisine-types/cuisine-types.module';
     IngredientsModule,
     RecipeingredientsModule,
     CuisineTypesModule,
+    DietaryRestrictionsModule,
   ],
   providers: [
     {

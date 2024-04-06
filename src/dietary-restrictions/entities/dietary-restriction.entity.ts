@@ -1,7 +1,7 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
 
 @ObjectType()
-export class CuisineType {
+export class DietaryRestriction {
   @Field()
   id: string;
 
@@ -13,7 +13,4 @@ export class CuisineType {
 
   @Field()
   name: string;
-
-  // @Field(() => [CuisineTypeRecipe], {nullable: true})
-  // cuisineTypeRecipe: CuisineTypeRecipe[];
 }
