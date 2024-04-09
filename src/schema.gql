@@ -99,6 +99,7 @@ type Query {
   user(email: String!): User!
   recipes: [Recipe!]!
   recipe(id: String!): Recipe!
+  newRecipes: [Recipe!]!
   ingredients: [Ingredient!]!
   ingredientsByPartialName(partialName: String!): [Ingredient!]!
   ingredient(id: String!): Ingredient!
