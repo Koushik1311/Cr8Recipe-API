@@ -39,4 +39,16 @@ export class RecipesService {
   remove(id: string) {
     return this.prisma.recipe.delete({ where: { id } });
   }
+
+  // New Recipes
+  findNew() {
+    let lastDay = new Date(Date.now() - 24 * 60 * 60 * 1000);
+    return this.prisma.recipe.findMany({
+      where: {
+        createdAt: {
+          gte: lastDay,
+        },
+      },
+    });
+  }
 }
