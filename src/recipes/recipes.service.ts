@@ -14,7 +14,12 @@ export class RecipesService {
   }
 
   findAll() {
-    return this.prisma.recipe.findMany({
+    return this.prisma.recipe.findMany();
+  }
+
+  findOne(id: string) {
+    return this.prisma.recipe.findUnique({
+      where: { id },
       include: {
         recipeingredients: {
           include: {
@@ -23,10 +28,6 @@ export class RecipesService {
         },
       },
     });
-  }
-
-  findOne(id: string) {
-    return this.prisma.recipe.findUnique({ where: { id } });
   }
 
   update(id: string, updateRecipeInput: UpdateRecipeInput) {
