@@ -80,6 +80,21 @@ type DietaryRestriction {
   name: String!
 }
 
+type MealType {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String!
+}
+
+type SeasonalOccasion {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String!
+  recipes: [Recipe!]
+}
+
 type Query {
   user(email: String!): User!
   recipes: [Recipe!]!
@@ -92,6 +107,10 @@ type Query {
   cuisineType(id: String!): CuisineType!
   dietaryRestrictions: [DietaryRestriction!]!
   dietaryRestriction(id: String!): DietaryRestriction!
+  mealTypes: [MealType!]!
+  mealType(id: String!): MealType!
+  seasonalOccasions: [SeasonalOccasion!]!
+  seasonalOccasion(id: String!): SeasonalOccasion!
 }
 
 type Mutation {
@@ -113,6 +132,12 @@ type Mutation {
   createDietaryRestriction(createDietaryRestrictionInput: CreateDietaryRestrictionInput!): DietaryRestriction!
   updateDietaryRestriction(updateDietaryRestrictionInput: UpdateDietaryRestrictionInput!): DietaryRestriction!
   removeDietaryRestriction(id: String!): DietaryRestriction!
+  createMealType(createMealTypeInput: CreateMealTypeInput!): MealType!
+  updateMealType(updateMealTypeInput: UpdateMealTypeInput!): MealType!
+  removeMealType(id: String!): MealType!
+  createSeasonalOccasion(createSeasonalOccasionInput: CreateSeasonalOccasionInput!): SeasonalOccasion!
+  updateSeasonalOccasion(updateSeasonalOccasionInput: UpdateSeasonalOccasionInput!): SeasonalOccasion!
+  removeSeasonalOccasion(id: String!): SeasonalOccasion!
 }
 
 input SignupUserInput {
@@ -173,5 +198,21 @@ input CreateDietaryRestrictionInput {
 }
 
 input UpdateDietaryRestrictionInput {
+  name: String!
+}
+
+input CreateMealTypeInput {
+  name: String!
+}
+
+input UpdateMealTypeInput {
+  name: String!
+}
+
+input CreateSeasonalOccasionInput {
+  name: String!
+}
+
+input UpdateSeasonalOccasionInput {
   name: String!
 }

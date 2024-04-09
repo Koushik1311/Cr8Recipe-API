@@ -13,6 +13,7 @@ import { RecipeingredientsModule } from './recipeingredients/recipeingredients.m
 import { CuisineTypesModule } from './cuisine-types/cuisine-types.module';
 import { DietaryRestrictionsModule } from './dietary-restrictions/dietary-restrictions.module';
 import { MealTypesModule } from './meal-types/meal-types.module';
+import { SeasonalOccasionsModule } from './seasonal-occasions/seasonal-occasions.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { MealTypesModule } from './meal-types/meal-types.module';
     CuisineTypesModule,
     DietaryRestrictionsModule,
     MealTypesModule,
+    SeasonalOccasionsModule,
   ],
   providers: [
     {
