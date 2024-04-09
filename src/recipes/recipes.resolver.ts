@@ -40,4 +40,11 @@ export class RecipesResolver {
   removeRecipe(@Args('id', { type: () => String }) id: string) {
     return this.recipesService.remove(id);
   }
+
+  // New Recipes
+  @Public()
+  @Query(() => [Recipe], { name: 'newRecipes' })
+  findNew() {
+    return this.recipesService.findNew();
+  }
 }
