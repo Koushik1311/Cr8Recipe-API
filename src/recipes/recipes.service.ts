@@ -26,6 +26,7 @@ export class RecipesService {
             ingredients: true,
           },
         },
+        instruction: true,
       },
     });
   }
