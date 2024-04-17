@@ -16,7 +16,7 @@ model User {
   password     String
   refreshToken String?
   recipes      Recipe[]
-  Reviews      Reviews?
+  Review       Review?
 }
 
 // CuisineType model
@@ -75,7 +75,7 @@ model Instruction {
 }
 
 // Reviews model
-model Reviews {
+model Review {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   createdAt DateTime @default(now()) @db.Date
   updatedAt DateTime @updatedAt @db.Date
@@ -100,12 +100,12 @@ model Recipe {
   imageUrl                 String?
   userId                   String                     @db.ObjectId
   instruction              Instruction?
-  recipeingredients        RecipeIngredient[]
-  CuisineTypeRecipe        CuisineTypeRecipe[]
+  RecipeIngredient         RecipeIngredient[]
+  cuisinetypeRecipe        CuisineTypeRecipe[]
   DietaryRestrictionRecipe DietaryRestrictionRecipe[]
   MealTypeRecipe           MealTypeRecipe[]
   SeasonalOccasionRecipe   SeasonalOccasionRecipe[]
-  Reviews                  Reviews[]
+  Review                   Review[]
 }
 
 // Many-to-Many model for Recipe & Ingredient
