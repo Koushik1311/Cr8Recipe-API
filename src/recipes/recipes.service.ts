@@ -21,7 +21,7 @@ export class RecipesService {
     return this.prisma.recipe.findUnique({
       where: { id },
       include: {
-        recipeingredients: {
+        RecipeIngredient: {
           include: {
             ingredients: true,
           },
