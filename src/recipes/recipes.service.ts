@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { CreateRecipeInput } from './dto/create-recipe.input';
 import { UpdateRecipeInput } from './dto/update-recipe.input';
 import { PrismaService } from 'src/prisma/prisma.service';
@@ -27,6 +27,7 @@ export class RecipesService {
           },
         },
         instruction: true,
+        Review: true,
       },
     });
   }
