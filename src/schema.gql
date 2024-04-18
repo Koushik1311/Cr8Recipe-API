@@ -95,6 +95,14 @@ type SeasonalOccasion {
   recipes: [Recipe!]
 }
 
+type Review {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  rating: Float!
+  comment: String!
+}
+
 type Query {
   user(email: String!): User!
   recipes: [Recipe!]!
@@ -112,6 +120,7 @@ type Query {
   mealType(id: String!): MealType!
   seasonalOccasions: [SeasonalOccasion!]!
   seasonalOccasion(id: String!): SeasonalOccasion!
+  reviews: [Review!]!
 }
 
 type Mutation {
@@ -139,6 +148,9 @@ type Mutation {
   createSeasonalOccasion(createSeasonalOccasionInput: CreateSeasonalOccasionInput!): SeasonalOccasion!
   updateSeasonalOccasion(updateSeasonalOccasionInput: UpdateSeasonalOccasionInput!): SeasonalOccasion!
   removeSeasonalOccasion(id: String!): SeasonalOccasion!
+  createReview(createReviewInput: CreateReviewInput!): Review!
+  updateReview(updateReviewInput: UpdateReviewInput!): Review!
+  removeReview(id: String!): Review!
 }
 
 input SignupUserInput {
@@ -216,4 +228,18 @@ input CreateSeasonalOccasionInput {
 
 input UpdateSeasonalOccasionInput {
   name: String!
+}
+
+input CreateReviewInput {
+  rating: Float!
+  comment: String!
+  userId: String!
+  recipeId: String!
+}
+
+input UpdateReviewInput {
+  rating: Float!
+  comment: String!
+  userId: String
+  recipeId: String
 }
