@@ -26,10 +26,6 @@ export class CreateRecipeInput {
   userId: string;
 
   @Field()
-  @IsString()
-  categoryId: string;
-
-  @Field()
   @IsNotEmpty()
   @IsString()
   @MaxLength(500)
