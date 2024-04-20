@@ -103,6 +103,14 @@ type Review {
   comment: String!
 }
 
+type Profile {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String!
+  description: String!
+}
+
 type Query {
   user(email: String!): User!
   recipes: [Recipe!]!
@@ -121,6 +129,7 @@ type Query {
   seasonalOccasions: [SeasonalOccasion!]!
   seasonalOccasion(id: String!): SeasonalOccasion!
   reviews: [Review!]!
+  profile(id: String!): Profile!
 }
 
 type Mutation {
@@ -151,6 +160,9 @@ type Mutation {
   createReview(createReviewInput: CreateReviewInput!): Review!
   updateReview(updateReviewInput: UpdateReviewInput!): Review!
   removeReview(id: String!): Review!
+  createProfile(createProfileInput: CreateProfileInput!): Profile!
+  updateProfile(updateProfileInput: UpdateProfileInput!): Profile!
+  removeProfile(id: String!): Profile!
 }
 
 input SignupUserInput {
@@ -168,7 +180,6 @@ input CreateRecipeInput {
   slag: String!
   cookingTime: Float!
   userId: String!
-  categoryId: String!
   description: String!
   imageUrl: String!
 }
@@ -178,9 +189,9 @@ input UpdateRecipeInput {
   slag: String!
   cookingTime: Float!
   userId: String
-  categoryId: String!
   description: String!
   imageUrl: String!
+  categoryId: String!
 }
 
 input CreateIngredientInput {
@@ -242,4 +253,16 @@ input UpdateReviewInput {
   comment: String!
   userId: String
   recipeId: String
+}
+
+input CreateProfileInput {
+  name: String!
+  description: String!
+  userId: String!
+}
+
+input UpdateProfileInput {
+  name: String!
+  description: String!
+  userId: String
 }

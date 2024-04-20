@@ -17,6 +17,18 @@ model User {
   refreshToken String?
   recipes      Recipe[]
   Review       Review[]
+  Profile      Profile?
+}
+
+// Profile model
+model Profile {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt   DateTime @default(now()) @db.Date
+  updatedAt   DateTime @updatedAt @db.Date
+  name        String
+  description String
+  user        User     @relation(fields: [userId], references: [id])
+  userId      String   @unique @db.ObjectId
 }
 
 // CuisineType model
@@ -98,6 +110,8 @@ model Recipe {
   description              String?
   cookingTime              Float?
   imageUrl                 String?
+  published                Boolean                    @default(false)
+  veg                      Boolean                    @default(false)
   userId                   String                     @db.ObjectId
   instruction              Instruction?
   RecipeIngredient         RecipeIngredient[]
