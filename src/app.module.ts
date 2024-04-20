@@ -15,6 +15,7 @@ import { DietaryRestrictionsModule } from './dietary-restrictions/dietary-restri
 import { MealTypesModule } from './meal-types/meal-types.module';
 import { SeasonalOccasionsModule } from './seasonal-occasions/seasonal-occasions.module';
 import { ReviewsModule } from './reviews/reviews.module';
+import { ProfilesModule } from './profiles/profiles.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { ReviewsModule } from './reviews/reviews.module';
     MealTypesModule,
     SeasonalOccasionsModule,
     ReviewsModule,
+    ProfilesModule,
   ],
   providers: [
     {
