@@ -14,7 +14,11 @@ export class RecipesService {
   }
 
   findAll() {
-    return this.prisma.recipe.findMany();
+    return this.prisma.recipe.findMany({
+      where: {
+        published: true,
+      },
+    });
   }
 
   findOne(id: string) {
@@ -48,9 +52,31 @@ export class RecipesService {
     let lastDay = new Date(Date.now() - 24 * 60 * 60 * 1000);
     return this.prisma.recipe.findMany({
       where: {
+        published: true,
         createdAt: {
           gte: lastDay,
         },
+      },
+    });
+  }
+
+  // User
+  // Draft recipes
+  findDraft(id: string) {
+    return this.prisma.recipe.findMany({
+      where: {
+        id,
+        published: false,
+      },
+    });
+  }
+
+  // Published recipes
+  findPublished(id: string) {
+    return this.prisma.recipe.findMany({
+      where: {
+        id,
+        published: true,
       },
     });
   }

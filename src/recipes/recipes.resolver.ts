@@ -47,4 +47,15 @@ export class RecipesResolver {
   findNew() {
     return this.recipesService.findNew();
   }
+
+  // User
+  // Draft recipes
+  findDraft(id: string) {
+    return this.recipesService.findDraft(id);
+  }
+
+  // Published recipes
+  findPublished(id: string) {
+    return this.recipesService.findPublished(id);
+  }
 }
