@@ -14,7 +14,11 @@ export class RecipesService {
   }
 
   findAll() {
-    return this.prisma.recipe.findMany();
+    return this.prisma.recipe.findMany({
+      where: {
+        published: true,
+      },
+    });
   }
 
   findOne(id: string) {
